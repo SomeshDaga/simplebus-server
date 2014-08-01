@@ -17,36 +17,6 @@ api = {'apikey':'Y0SgOFBTcRPW2nkOx9gA'}
 header = {'content-type':'application/JSON', 'accept':'application/JSON'}
 port = int(os.environ.get('PORT', 5000))
 
-@app.route('/')
-@crossdomain(origin='*')
-def index():
-    return 'Hello world!'
-
-@app.route('/api/stop/<stop_id>')
-@crossdomain(origin='*')
-def stop(stop_id):
-    r = requests.get(url + 'stops/' + stop_id, params = api, headers = header)
-    return r.text
-
-@app.route('/api/stop/<stop_id>/<route_id>')
-@crossdomain(origin='*')
-def stop_route(stop_id, route_id):
-    stop_route_api = api
-    stop_route_api['route'] = route_id
-    r = requests.get(url + 'stops/' + stop_id, params = stop_route_api, headers = header)
-    return r.text
-
-@app.route('/api/estimate/<stop_id>')
-@crossdomain(origin='*')
-def estimate(stop_id):
-    r = requests.get(url + 'stops/' + stop_id + '/estimates', params = api, headers = header)
-    return r.text
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=port)
-
-
 def crossdomain(origin=None, methods=None, headers=None,
                 max_age=21600, attach_to_all=True,
                 automatic_options=True):
@@ -87,3 +57,32 @@ def crossdomain(origin=None, methods=None, headers=None,
         f.provide_automatic_options = False
         return update_wrapper(wrapped_function, f)
     return decorator
+
+@app.route('/')
+@crossdomain(origin='*')
+def index():
+    return 'Hello world!'
+
+@app.route('/api/stop/<stop_id>')
+@crossdomain(origin='*')
+def stop(stop_id):
+    r = requests.get(url + 'stops/' + stop_id, params = api, headers = header)
+    return r.text
+
+@app.route('/api/stop/<stop_id>/<route_id>')
+@crossdomain(origin='*')
+def stop_route(stop_id, route_id):
+    stop_route_api = api
+    stop_route_api['route'] = route_id
+    r = requests.get(url + 'stops/' + stop_id, params = stop_route_api, headers = header)
+    return r.text
+
+@app.route('/api/estimate/<stop_id>')
+@crossdomain(origin='*')
+def estimate(stop_id):
+    r = requests.get(url + 'stops/' + stop_id + '/estimates', params = api, headers = header)
+    return r.text
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=port)
