@@ -50,6 +50,7 @@ def crossdomain(origin=None, methods=None, headers=None,
             h['Access-Control-Allow-Origin'] = origin
             h['Access-Control-Allow-Methods'] = get_methods()
             h['Access-Control-Max-Age'] = str(max_age)
+            h['Content-Type'] = 'application/json'
             if headers is not None:
                 h['Access-Control-Allow-Headers'] = headers
             return resp
