@@ -84,6 +84,14 @@ def estimate(stop_id):
     r = requests.get(url + 'stops/' + stop_id + '/estimates', params = api, headers = header)
     return r.text
 
+@app.route('/api/estimate/<stop_id>/<route_id>')
+@crossdomain(origin='*')
+def route_estimate(stop_id, route_id):
+    stop_route_api = api
+    stop_route_api['route'] = route_id
+    r = requests.get(url + 'stops/' + stop_id + '/estimates', params = api, headers = header)
+    return r.text
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
