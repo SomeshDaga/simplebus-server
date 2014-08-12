@@ -74,7 +74,7 @@ def stop(stop_id):
 @crossdomain(origin='*')
 def stop_route(stop_id, route_id):
     stop_route_api = api
-    stop_route_api['route'] = route_id
+    stop_route_api['route'] = str(route_id)
     r = requests.get(url + 'stops/' + stop_id, params = stop_route_api, headers = header)
     return r.text
 
@@ -88,7 +88,7 @@ def estimate(stop_id):
 @crossdomain(origin='*')
 def route_estimate(stop_id, route_id):
     stop_route_api = api
-    stop_route_api['route'] = route_id
+    stop_route_api['route'] = str(route_id)
     r = requests.get(url + 'stops/' + stop_id + '/estimates', params = api, headers = header)
     return r.text
 
