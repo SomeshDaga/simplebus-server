@@ -4,14 +4,6 @@ from datetime import timedelta
 from functools import update_wrapper
 app = Flask(__name__)
 
-
-
-# app.config.update(dict(
-#     DEBUG = False,
-#     TRANSLINK_API_URL = 'http://api.translink.ca/rttiapi/v1/',
-#     TRANSLINK_API_KEY = 'Y0SgOFBTcRPW2nkOx9gA',
-# ))
-
 url = 'http://api.translink.ca/rttiapi/v1/'
 api = {'apikey':'Y0SgOFBTcRPW2nkOx9gA'}
 header = {'content-type':'application/JSON', 'accept':'application/JSON'}
@@ -89,7 +81,7 @@ def estimate(stop_id):
 def route_estimate(stop_id, route_id):
     stop_route_api = api
     stop_route_api['routeNo'] = route_id
-    r = requests.get(url + 'stops/' + stop_id + '/estimates', params = api, headers = header)
+    r = requests.get(url + 'stops/' + stop_id + '/estimates', params = stop_route_api, headers = header)
     return r.text
 
 
