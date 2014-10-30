@@ -5,7 +5,7 @@ from functools import update_wrapper
 app = Flask(__name__)
 
 url = 'http://api.translink.ca/rttiapi/v1/'
-api = {'apikey':'Y0SgOFBTcRPW2nkOx9gA'}
+api = {'apikey':'INSERT_API_KEY_HERE'}
 header = {'content-type':'application/JSON', 'accept':'application/JSON'}
 port = int(os.environ.get('PORT', 5000))
 
